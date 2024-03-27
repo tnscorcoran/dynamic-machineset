@@ -19,6 +19,8 @@ Get the values as follows or use these defaults
 
 
 ### Steps
-```
-oc login ----
-```
+ - 
+    ```
+    oc login ----
+    ```
+ - xs
