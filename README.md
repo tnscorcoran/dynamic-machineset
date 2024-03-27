@@ -8,7 +8,10 @@
 
 ### Suggestions
 Get the values as follows or use these defaults
-- [infrastructure_id] - replace with
+- [infrastructure_id] - with the contents of
+```
+    oc get -o jsonpath='{.status.infrastructureName}{"\n"}' infrastructure cluster
+```
 - [instanceType]
 - [availabilityZone]
 - [region]
