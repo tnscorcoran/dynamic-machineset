@@ -23,11 +23,13 @@ Get the values as follows or use these defaults
     ```
     oc login ----
     ```
- -  Run the following to 
+ -  Next we'll run commeands to 
     - Get your OpenShift cluster id
     - Do your placeholder replacements
     - Set your OpenShift project
     - Create your machineset
+
+    Run the following - replacing what's in quotes with your values, wher needed
     ```
     export CLUSTER_ID=$(oc get -o jsonpath='{.status.infrastructureName}{"\n"}' infrastructure cluster)
     sh ./dynamic-machineset.sh dynamic-machineset.yaml $CLUSTER_ID 'g5.8xlarge' 'eu-central-1' 'eu-central-1c' 'ami-04dfa611b3daffc47'
