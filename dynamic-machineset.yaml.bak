@@ -2,22 +2,22 @@ apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
   labels:
-    machine.openshift.io/cluster-api-cluster: cluster-66vvd-9wjlf 
-  name: cluster-66vvd-9wjlf-tom-ms 
+    machine.openshift.io/cluster-api-cluster: your_infrastructure_id 
+  name: your_infrastructure_id-tom-ms 
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      machine.openshift.io/cluster-api-cluster: cluster-66vvd-9wjlf 
-      machine.openshift.io/cluster-api-machineset: cluster-66vvd-9wjlf-tom-ms 
+      machine.openshift.io/cluster-api-cluster: your_infrastructure_id 
+      machine.openshift.io/cluster-api-machineset: your_infrastructure_id-tom-ms 
   template:
     metadata:
       labels:
-        machine.openshift.io/cluster-api-cluster: cluster-66vvd-9wjlf
+        machine.openshift.io/cluster-api-cluster: your_infrastructure_id
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
-        machine.openshift.io/cluster-api-machineset: cluster-66vvd-9wjlf-tom-ms 
+        machine.openshift.io/cluster-api-machineset: your_infrastructure_id-tom-ms 
     spec:
       metadata:
         labels:
@@ -25,7 +25,7 @@ spec:
       providerSpec:
         value:
           ami:
-            id: ami-04dfa611b3daffc47
+            id: your_ami
           apiVersion: awsproviderconfig.openshift.io/v1beta1
           blockDevices:
             - ebs:
@@ -36,24 +36,24 @@ spec:
             name: aws-cloud-credentials
           deviceIndex: 0
           iamInstanceProfile:
-            id: cluster-66vvd-9wjlf-worker-profile 
-          instanceType: g5.8xlarge
+            id: your_infrastructure_id-worker-profile 
+          instanceType: your_instanceType
           kind: AWSMachineProviderConfig
           placement:
-            availabilityZone: eu-central-1c
-            region: eu-central-1
+            availabilityZone: your_availabilityZone
+            region: your_region
           securityGroups:
             - filters:
                 - name: tag:Name
                   values:
-                    - cluster-66vvd-9wjlf-worker-sg 
+                    - your_infrastructure_id-worker-sg 
           subnet:
             filters:
               - name: tag:Name
                 values:
-                  - cluster-66vvd-9wjlf-private-eu-central-1c
+                  - your_infrastructure_id-private-your_availabilityZone
           tags:
-            - name: kubernetes.io/cluster/cluster-66vvd-9wjlf 
+            - name: kubernetes.io/cluster/your_infrastructure_id 
               value: owned
           userDataSecret:
             name: worker-user-data
