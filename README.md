@@ -12,7 +12,7 @@ Get the values as follows or use these defaults
 ```
     oc get -o jsonpath='{.status.infrastructureName}{"\n"}' infrastructure cluster
 ```
-- [instanceType] - e.g. s
+- [instanceType] - e.g. g5.8xlarge
 - [region] - e.g. eu-central-1
 - [availabilityZone] - e.g. eu-central-1a (make this the same availabilityZone as an existing machineset)
 - [ami-id] - (make this the same amiid as appears in an existing machineset)
