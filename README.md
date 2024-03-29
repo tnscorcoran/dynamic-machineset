@@ -1,5 +1,5 @@
 # Populates a default AWS Machineset yaml 
-### We take inputs from the user to various replace placeholders  
+### We take inputs from the user to replace various placeholders  
 You need to establish the values as follows or use these defaults
 - [infrastructure_id] - with the contents of:
 ```
@@ -16,7 +16,7 @@ You need to establish the values as follows or use these defaults
     ```
     oc login ----
     ```
- -  Next we'll run commeands to 
+ -  Next we'll run commands to 
     - Get your OpenShift cluster id
     - Do your placeholder replacements
     - Set your OpenShift project
