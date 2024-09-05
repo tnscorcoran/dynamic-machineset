@@ -2,22 +2,22 @@ apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
   labels:
-    machine.openshift.io/cluster-api-cluster: your_infrastructure_id 
-  name: your_infrastructure_id-tom-ms 
+    machine.openshift.io/cluster-api-cluster: cluster-gfdmf-j24js 
+  name: cluster-gfdmf-j24js-tom-ms 
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      machine.openshift.io/cluster-api-cluster: your_infrastructure_id 
-      machine.openshift.io/cluster-api-machineset: your_infrastructure_id-tom-ms 
+      machine.openshift.io/cluster-api-cluster: cluster-gfdmf-j24js 
+      machine.openshift.io/cluster-api-machineset: cluster-gfdmf-j24js-tom-ms 
   template:
     metadata:
       labels:
-        machine.openshift.io/cluster-api-cluster: your_infrastructure_id
+        machine.openshift.io/cluster-api-cluster: cluster-gfdmf-j24js
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
-        machine.openshift.io/cluster-api-machineset: your_infrastructure_id-tom-ms 
+        machine.openshift.io/cluster-api-machineset: cluster-gfdmf-j24js-tom-ms 
     spec:
       metadata:
         labels:
@@ -25,7 +25,7 @@ spec:
       providerSpec:
         value:
           ami:
-            id: your_ami
+            id: ami-06bdb32d488c261a3
           apiVersion: awsproviderconfig.openshift.io/v1beta1
           blockDevices:
             - ebs:
@@ -36,24 +36,28 @@ spec:
             name: aws-cloud-credentials
           deviceIndex: 0
           iamInstanceProfile:
-            id: your_infrastructure_id-worker-profile 
-          instanceType: your_instanceType
+            id: cluster-gfdmf-j24js-worker-profile 
+          instanceType: g5.12xlarge
           kind: AWSMachineProviderConfig
           placement:
-            availabilityZone: your_availabilityZone
-            region: your_region
+            availabilityZone: eu-west-1b
+            region: eu-west-1
           securityGroups:
             - filters:
-                - name: tag:Name
+                - name: 'tag:Name'
                   values:
-                    - your_infrastructure_id-worker-sg 
+                    - cluster-gfdmf-j24js-node
+            - filters:
+                - name: 'tag:Name'
+                  values:
+                    - cluster-gfdmf-j24js-lb
           subnet:
             filters:
-              - name: tag:Name
+              - name: 'tag:Name'
                 values:
-                  - your_infrastructure_id-private-your_availabilityZone
+                  - cluster-gfdmf-j24js-subnet-private-eu-west-1b
           tags:
-            - name: kubernetes.io/cluster/your_infrastructure_id 
+            - name: kubernetes.io/cluster/cluster-gfdmf-j24js 
               value: owned
           userDataSecret:
             name: worker-user-data

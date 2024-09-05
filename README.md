@@ -30,25 +30,4 @@ You need to establish the values as follows or use these defaults
     oc apply -f dynamic-machineset.yaml
     ```    
 
-Modify both the ***Security Groups*** and ***Subnet*** sections of the yaml - substituting in ID values from an existing running Machineset on the cluster
-e.g.
-
-```
-          securityGroups:
-            - filters:
-                - name: 'tag:Name'
-                  values:
-                    - cluster-ggvz5-wjp8w-node
-            - filters:
-                - name: 'tag:Name'
-                  values:
-                    - cluster-ggvz5-wjp8w-lb
-```
-and
-```
-          subnet:
-            filters:
-              - name: 'tag:Name'
-                values:
-                  - cluster-ggvz5-wjp8w-subnet-private-eu-west-1a
-```
+Modify both the ***Security Groups*** and ***Subnet*** sections of the yaml - copying in from an already running Security Group
