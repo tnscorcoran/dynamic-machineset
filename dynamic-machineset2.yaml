@@ -2,22 +2,22 @@ apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
   labels:
-    machine.openshift.io/cluster-api-cluster: cluster-957dg-f7x7q 
-  name: cluster-957dg-f7x7q-tom-ms 
+    machine.openshift.io/cluster-api-cluster: your_infrastructure_id 
+  name: your_infrastructure_id-tom-ms2 
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      machine.openshift.io/cluster-api-cluster: cluster-957dg-f7x7q 
-      machine.openshift.io/cluster-api-machineset: cluster-957dg-f7x7q-tom-ms 
+      machine.openshift.io/cluster-api-cluster: your_infrastructure_id 
+      machine.openshift.io/cluster-api-machineset: your_infrastructure_id-tom-ms2 
   template:
     metadata:
       labels:
-        machine.openshift.io/cluster-api-cluster: cluster-957dg-f7x7q
+        machine.openshift.io/cluster-api-cluster: your_infrastructure_id
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
-        machine.openshift.io/cluster-api-machineset: cluster-957dg-f7x7q-tom-ms 
+        machine.openshift.io/cluster-api-machineset: your_infrastructure_id-tom-ms2 
     spec:
       metadata:
         labels:
@@ -25,7 +25,7 @@ spec:
       providerSpec:
         value:
           ami:
-            id: ami-0c86a47f0578194cf
+            id: your_ami
           apiVersion: awsproviderconfig.openshift.io/v1beta1
           blockDevices:
             - ebs:
@@ -36,24 +36,24 @@ spec:
             name: aws-cloud-credentials
           deviceIndex: 0
           iamInstanceProfile:
-            id: cluster-957dg-f7x7q-worker-profile 
-          instanceType: m5.16xlarge
+            id: your_infrastructure_id-worker-profile 
+          instanceType: your_instanceType
           kind: AWSMachineProviderConfig
           placement:
-            availabilityZone: eu-west-1a
-            region: eu-west-1
+            availabilityZone: your_availabilityZone
+            region: your_region
           securityGroups:
             - filters:
-                - name: 'tag:Name'
+                - name: tag:Name
                   values:
-                    - cluster-957dg-f7x7q-worker-sg
+                    - your_infrastructure_id-worker-sg 
           subnet:
             filters:
-              - name: 'tag:Name'
+              - name: tag:Name
                 values:
-                  - cluster-957dg-f7x7q-private-eu-west-1a
+                  - your_infrastructure_id-private-your_availabilityZone
           tags:
-            - name: kubernetes.io/cluster/cluster-957dg-f7x7q 
+            - name: kubernetes.io/cluster/your_infrastructure_id 
               value: owned
           userDataSecret:
             name: worker-user-data
